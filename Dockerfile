@@ -6,7 +6,7 @@ RUN apk add --no-cache git ca-certificates
 WORKDIR /app
 COPY go.mod go.sum ./
 # Uncomment the next line if you are in China and encounter Go module download timeouts.
-ENV GOPROXY=https://goproxy.cn,direct
+# ENV GOPROXY=https://goproxy.cn,direct
 RUN go mod download
 
 COPY . .
