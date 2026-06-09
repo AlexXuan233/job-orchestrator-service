@@ -1,0 +1,24 @@
+# Prometheus config for the take-home starter.
+# Scrapes:
+#   - itself (sanity)
+#   - the mock-upstream container (so you can see it works)
+#   - candidate-service: the service the candidate writes, expected at host:8080/metrics
+#
+# If you run your service on a different port, edit the candidate-service job target.
+
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: mock-upstream
+    static_configs:
+      - targets: ["mock-upstream:8080"]
+
+  - job_name: candidate-service
+    static_configs:
+      - targets: ["job-orchestrator-service:8080"]
